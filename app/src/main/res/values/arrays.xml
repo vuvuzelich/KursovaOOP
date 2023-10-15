@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="select_grade">Оберіть грейд</string>
+    <string-array name="grade_array">
+        <item>P3</item>
+        <item>P2</item>
+        <item>P1</item>
+        <item>M3</item>
+        <item>M2</item>
+        <item>M1</item>
+    </string-array>
+    <string-array name="position_array">
+        <item>HR</item>
+        <item>Project Manager</item>
+        <item>Admin</item>
+    </string-array>
+</resources>
+

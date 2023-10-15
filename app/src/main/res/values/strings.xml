@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">KursovaOOP</string>
+    <string name="select_position">Оберіть роль</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="full_name_label">%1$s</string>
+    <string name="email_label">%1$s</string>
+    <string name="position_label">%1$s</string>
+    <string name="grade_label">Grade: %1$s</string>
+    <string name="oraclelogo">OracleLogo</string>
+    <string name="icon">Icon</string>
+    <string name="x">x</string>
+    <string name="european_university">European University</string>
+    <string name="grade">Grade: %1$s</string>
+    <string name="employeemanagement">Управління Працівниками</string>
+    <string name="icon1">Icon</string>
+</resources>

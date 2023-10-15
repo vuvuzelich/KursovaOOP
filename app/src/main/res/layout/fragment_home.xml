@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnknownId">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|center_vertical"
+                android:minHeight="100dp"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="avatar"
+                    android:padding="16dp"
+                    android:src="@drawable/zayac_24"
+                    app:shapeAppearanceOverlay="@style/CircularImageViewShape" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/fullNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/positionTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/borderColor"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/gradeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/buttonsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:background="@drawable/rounded_button"
+                        android:contentDescription="Button Description"
+                        android:padding="16dp"
+                        android:src="@drawable/star_black_border_24"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/circle_button"
+                        android:contentDescription="Button Description"
+                        android:padding="4dp"
+                        android:src="@drawable/circle_notifications_48"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/manageEmployeesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/gradient_edit_text"
+                android:gravity="center"
+                android:minHeight="100dp"
+                android:orientation="horizontal"
+
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/icon"
+                    android:padding="16dp"
+                    android:src="@drawable/user_circle_24" />
+
+                <TextView
+                    android:id="@+id/manageEmployeesTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_semibold"
+                    android:maxWidth="250dp"
+                    android:minWidth="200dp"
+                    android:text="@string/employeemanagement"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/icon1"
+                    android:gravity="end"
+                    android:src="@drawable/arrow_blue_outward_48" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/calculateSalarieLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/gradient_edit_text"
+                android:gravity="center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:padding="16dp"
+                    android:src="@drawable/monetization_on_48" />
+
+                <TextView
+                    android:id="@+id/calculateSalarieTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_semibold"
+                    android:maxWidth="250dp"
+                    android:minWidth="250dp"
+                    android:text="Розрахунок Зарплати"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:gravity="end"
+                    android:src="@drawable/arrow_outward_48" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/reportsAnalyticsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/gradient_edit_text"
+                android:gravity="center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:padding="16dp"
+                    android:src="@drawable/receipt_long_48" />
+
+                <TextView
+                    android:id="@+id/reportsAnalyticsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_semibold"
+                    android:maxWidth="250dp"
+                    android:minWidth="250dp"
+                    android:text="Звіти та Аналітика"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:gravity="end"
+                    android:src="@drawable/arrow_outward_48" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/notificationsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/gradient_edit_text"
+                android:gravity="center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:padding="16dp"
+                    android:src="@drawable/message_48" />
+
+
+                <TextView
+                    android:id="@+id/notificationsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_semibold"
+                    android:maxWidth="250dp"
+                    android:minWidth="200dp"
+                    android:text="Повідомлення та Нагадування"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:gravity="end"
+                    android:src="@drawable/arrow_outward_48" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/adminFunctionsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/gradient_edit_text"
+                android:gravity="center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:padding="16dp"
+                    android:src="@drawable/message_48" />
+
+
+                <TextView
+                    android:id="@+id/adminFunctionsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_semibold"
+                    android:maxWidth="250dp"
+                    android:minWidth="200dp"
+                    android:text="Додаткові Функції для Адміністраторів"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:gravity="end"
+                    android:src="@drawable/arrow_outward_48" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/integrationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/gradient_edit_text"
+                android:gravity="center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:padding="16dp"
+                    android:src="@drawable/outpatient_48" />
+
+
+                <TextView
+                    android:id="@+id/integrationTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_semibold"
+                    android:maxWidth="250dp"
+                    android:minWidth="200dp"
+                    android:text="Інтеграція з Іншими Системами"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:gravity="end"
+                    android:src="@drawable/arrow_outward_48" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/exitLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/gradient_edit_text"
+                android:gravity="center"
+                android:minHeight="100dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:padding="16dp"
+                    android:src="@drawable/outpatient_48" />
+
+
+                <TextView
+                    android:id="@+id/exitTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_semibold"
+                    android:maxWidth="250dp"
+                    android:minWidth="200dp"
+                    android:text="Вихід с учетного запису"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:gravity="end"
+                    android:src="@drawable/arrow_outward_48" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
