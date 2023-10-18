@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/baseline_gite_24"
+        android:title="" />
+    <item
+        android:id="@+id/navigation_info"
+        android:title=""
+        android:icon="@drawable/people_outline_48" />
+</menu>
+

@@ -80,13 +80,17 @@ public class CalculateSalariesFragment extends Fragment {
 
                 // Форматуємо зарплату, щоб вивести лише дві цифри після коми
                 DecimalFormat decimalFormat = new DecimalFormat("#.##");
-                String result = decimalFormat.format(taxedSalary);
+                String result = decimalFormat.format(taxedSalary) + " ₴грн";
 
-                viewModel.addSalary(result); // Додаємо зарплату в список
+                // Отримуємо екземпляр DatabaseHelper з контексту фрагмента
+                DatabaseHelper databaseHelper = new DatabaseHelper(requireContext());
+
+
+                viewModel.addSalary(result, databaseHelper); // Додаємо зарплату в базу даних
 
                 // Отображаємо повний розрахунок в TextView
                 TextView resultTextView = requireActivity().findViewById(R.id.resultTextView);
-                resultTextView.setText(result + " ₴грн");
+                resultTextView.setText(result);
             } catch (NumberFormatException e) {
                 // Якщо введені некоректні дані, показуємо повідомлення про помилку
                 TextView resultTextView = requireActivity().findViewById(R.id.resultTextView);
@@ -98,6 +102,8 @@ public class CalculateSalariesFragment extends Fragment {
             resultTextView.setText("Введено некоректні дані.");
         }
     }
+
+
 
 
 

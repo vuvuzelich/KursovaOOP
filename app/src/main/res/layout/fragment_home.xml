@@ -39,7 +39,7 @@
                     android:background="@drawable/rounded_button"
                     android:contentDescription="avatar"
                     android:padding="16dp"
-                    android:src="@drawable/zayac_24"
+                    android:src="@drawable/baseline_person_24"
                     app:shapeAppearanceOverlay="@style/CircularImageViewShape" />
 
                 <LinearLayout
@@ -52,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/colorPrimary" />
+                        android:textColor="@color/colorAccent" />
 
                     <TextView
                         android:id="@+id/positionTextView"
@@ -105,48 +105,7 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/manageEmployeesLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="8dp"
-                android:background="@drawable/gradient_edit_text"
-                android:gravity="center"
-                android:minHeight="100dp"
-                android:orientation="horizontal"
 
-                >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/icon"
-                    android:padding="16dp"
-                    android:src="@drawable/user_circle_24" />
-
-                <TextView
-                    android:id="@+id/manageEmployeesTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/inter_semibold"
-                    android:maxWidth="250dp"
-                    android:minWidth="200dp"
-                    android:text="@string/employeemanagement"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/icon1"
-                    android:gravity="end"
-                    android:src="@drawable/arrow_blue_outward_48" />
-
-            </LinearLayout>
 
 
             <LinearLayout
@@ -164,9 +123,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/rounded_button"
                     android:contentDescription="Icon"
                     android:padding="16dp"
-                    android:src="@drawable/monetization_on_48" />
+                    android:src="@drawable/monetization_blue_on_48" />
 
                 <TextView
                     android:id="@+id/calculateSalarieTextView"
@@ -206,9 +166,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/rounded_button"
                     android:contentDescription="Icon"
                     android:padding="16dp"
-                    android:src="@drawable/receipt_long_48" />
+                    android:src="@drawable/receipt_blue_long_48" />
 
                 <TextView
                     android:id="@+id/reportsAnalyticsTextView"
@@ -222,6 +183,50 @@
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:contentDescription="Icon"
+                    android:gravity="end"
+                    android:src="@drawable/arrow_outward_48" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/manageEmployeesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/gradient_edit_text"
+                android:gravity="center"
+                android:minHeight="100dp"
+                android:orientation="horizontal"
+
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/user_circle_24" />
+
+                <TextView
+                    android:id="@+id/manageEmployeesTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_semibold"
+                    android:maxWidth="250dp"
+                    android:minWidth="200dp"
+                    android:text="@string/employeemanagement"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <ImageView
                     android:layout_width="48dp"
@@ -248,6 +253,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/rounded_button"
                     android:contentDescription="Icon"
                     android:padding="16dp"
                     android:src="@drawable/message_48" />
@@ -290,6 +296,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/rounded_button"
                     android:contentDescription="Icon"
                     android:padding="16dp"
                     android:src="@drawable/message_48" />
@@ -332,6 +339,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/rounded_button"
                     android:contentDescription="Icon"
                     android:padding="16dp"
                     android:src="@drawable/outpatient_48" />
@@ -374,6 +382,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/rounded_button"
                     android:contentDescription="Icon"
                     android:padding="16dp"
                     android:src="@drawable/outpatient_48" />

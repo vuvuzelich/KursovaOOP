@@ -7,22 +7,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SalaryViewModel extends ViewModel {
-    private MutableLiveData<List<String>> salaryList = new MutableLiveData<>();
+
+    private MutableLiveData<List<String>> salaryList;
 
     public LiveData<List<String>> getSalaryList() {
-        if (salaryList.getValue() == null) {
-            salaryList.setValue(new ArrayList<>());
+        if (salaryList == null) {
+            salaryList = new MutableLiveData<>();
         }
         return salaryList;
     }
 
-    public void addSalary(String salary) {
-        List<String> currentList = salaryList.getValue();
-        if (currentList == null) {
-            currentList = new ArrayList<>();
+    public void loadSalaries(DatabaseHelper databaseHelper) {
+        if (salaryList == null) {
+            salaryList = new MutableLiveData<>();
         }
-        currentList.add(salary);
-        salaryList.setValue(currentList);
+        List<String> salaries = databaseHelper.getAllSalaries();
+        salaryList.setValue(salaries);
+    }
+
+    public void addSalary(String amount, DatabaseHelper databaseHelper) {
+        // Додаємо розрахунок до бази даних
+        databaseHelper.addSalary(amount);
+        // Оновлюємо список розрахунків
+        loadSalaries(databaseHelper);
     }
 }
 

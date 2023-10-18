@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="oracle">ORACLE</string>
-    <string name="x">x</string>
-    <string name="european_university">European University</string>
     <string name="grade">Grade:</string>
     <string name="employeemanagement">Управління Працівниками</string>
     <string name="icon1">Icon</string>

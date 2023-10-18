@@ -28,16 +28,22 @@ public class ReportsAnalyticsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reports_analytics, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+        layoutManager.setReverseLayout(true); // Встановлюємо орієнтацію у зворотньому порядку
+        layoutManager.setStackFromEnd(true); // Розташовуємо айтеми знизу вверх
+        recyclerView.setLayoutManager(layoutManager);
 
         viewModel = new ViewModelProvider(requireActivity()).get(SalaryViewModel.class);
+        viewModel.loadSalaries(new DatabaseHelper(requireContext()));
 
-        // Наблюдаем за изменениями в LiveData внутри ViewModel
+
+
+
         viewModel.getSalaryList().observe(getViewLifecycleOwner(), new Observer<List<String>>() {
             @Override
             public void onChanged(List<String> salaryList) {
-                // Обновляем адаптер списка с новыми данными
-                adapter = new SalaryListAdapter(salaryList);
+                int lastItemTextColor = getResources().getColor(R.color.lastItemTextColor); // Колір для останнього елемента
+                adapter = new SalaryListAdapter(salaryList, lastItemTextColor);
                 recyclerView.setAdapter(adapter);
             }
         });
@@ -47,10 +53,6 @@ public class ReportsAnalyticsFragment extends Fragment {
         return view;
     }
 
-    public void displayResult(String result) {
-        // Отображаем результат в текстовом поле
-        resultTextView.setText("Заробітна плата: " + result + " грн");
-    }
 }
 
 

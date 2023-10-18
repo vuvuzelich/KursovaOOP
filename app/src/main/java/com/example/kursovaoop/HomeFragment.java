@@ -15,8 +15,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 public class HomeFragment extends Fragment {
+
+    private SharedViewModel viewModel;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+
+        Bundle args = getArguments();
+        if (args != null) {
+            String fullName = args.getString("fullName");
+            String position = args.getString("position");
+            String grade = args.getString("grade");
+            String email = args.getString("email");
+            // Сохраните данные в SharedViewModel
+            viewModel.setUser(new User(fullName, position, grade, email));
+        }
+    }
 
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -47,6 +66,17 @@ public class HomeFragment extends Fragment {
             positionTextView.setText(position);
             gradeTextView.setText("Grade: " + grade);
         }
+
+
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+
+        // Подписка на изменения данных пользователя
+        viewModel.getUser().observe(getViewLifecycleOwner(), user -> {
+            // Обновление UI с новыми данными из объекта User
+            fullNameTextView.setText(user.getFullName());
+            positionTextView.setText(user.getPosition());
+            gradeTextView.setText("Grade: " + user.getGrade());
+        });
 
 
         manageEmployeesLayout.setOnClickListener(v -> {
@@ -94,13 +124,8 @@ public class HomeFragment extends Fragment {
             openFragment(integrationFragment);
         });
 
-
-
-
         return view;
     }
-
-
 
     public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
@@ -108,9 +133,5 @@ public class HomeFragment extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
-
-
-
 
 }

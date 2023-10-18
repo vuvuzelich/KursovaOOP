@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "users.db";
@@ -22,7 +25,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_POSITION = "position";
     public static final String COLUMN_GRADE = "grade";
 
-    private static final String TABLE_CREATE =
+    public static final String TABLE_SALARIES = "salaries";
+    private static final String COLUMN_SALARY_ID = "id";
+    public static final String COLUMN_SALARY_AMOUNT = "amount";
+    private static final String COLUMN_SALARY_DATE = "date";
+
+    private static final String TABLE_USERS_CREATE =
             "CREATE TABLE " + TABLE_USERS + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_FIRST_NAME + " TEXT, " +
@@ -32,13 +40,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COLUMN_POSITION + " TEXT, " +
                     COLUMN_GRADE + " TEXT) ";
 
+    private static final String TABLE_SALARIES_CREATE =
+            "CREATE TABLE " + TABLE_SALARIES + " (" +
+                    COLUMN_SALARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COLUMN_SALARY_AMOUNT + " TEXT, " +
+                    COLUMN_SALARY_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP)";
+
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TABLE_CREATE);
+        db.execSQL(TABLE_USERS_CREATE);
+        db.execSQL(TABLE_SALARIES_CREATE);
     }
 
     public long addUser(String firstName, String lastName, String email, String password, String position, String grade) {
@@ -88,7 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             @SuppressLint("Range") String grade = cursor.getString(cursor.getColumnIndex(COLUMN_GRADE));
             @SuppressLint("Range") String position = cursor.getString(cursor.getColumnIndex(COLUMN_POSITION));
 
-            // Проверяем, является ли position null, и заменяем его пустой строкой, если это так
+            // Перевіряємо, чи є поле position null, і замінюємо його пустою строкою, якщо це так
             if (position == null) {
                 position = "";
             }
@@ -98,7 +114,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("DatabaseHelper", "Grade: " + grade);
             Log.d("DatabaseHelper", "Position: " + position);
 
-            user = new User(firstName + " " + lastName, position, grade, email );
+            user = new User(firstName + " " + lastName, position, grade, email);
         }
 
         if (cursor != null) {
@@ -109,11 +125,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user;
     }
 
+    public void addSalary(String amount) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_SALARY_AMOUNT, amount);
+        db.insert(TABLE_SALARIES, null, values);
+        db.close();
+    }
 
+    public List<String> getAllSalaries() {
+        List<String> salaries = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_SALARIES, new String[]{COLUMN_SALARY_AMOUNT}, null, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") String amount = cursor.getString(cursor.getColumnIndex(COLUMN_SALARY_AMOUNT));
+                salaries.add(amount);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        db.close();
+        return salaries;
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SALARIES);
         onCreate(db);
     }
 }

@@ -65,10 +65,14 @@ public class RegistrationFragment extends Fragment {
                 String position = positionSpinner.getSelectedItem().toString();
                 password = passwordEditText.getText().toString();
 
+                if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                    // Якщо хоча б одне поле порожнє, показати повідомлення
+                    Toast.makeText(requireContext(), "Заповніть усі дані", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Всі поля заповнені, зберегти користувача в базу даних
+                    saveUserToDatabase(firstName, lastName, email, grade, password, position);
+                }
 
-
-                // Зберігаємо користувача в базу даних, передаючи пароль
-                saveUserToDatabase(firstName, lastName, email, grade, password, position);
             }
         });
 

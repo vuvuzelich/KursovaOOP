@@ -10,6 +10,11 @@
         <item>M1</item>
     </string-array>
     <string-array name="position_array">
+        <item>Accountant</item>
+        <item>Linkbuilder</item>
+        <item>Scrum Master</item>
+        <item>IOS Developer</item>
+        <item>Android Developer</item>
         <item>HR</item>
         <item>Project Manager</item>
         <item>Admin</item>

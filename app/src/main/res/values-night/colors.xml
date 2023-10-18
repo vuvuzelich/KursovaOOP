@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dividerColor">#3A47B7</color>
+    <color name="lastItemTextColor">#256D76</color>
+</resources>

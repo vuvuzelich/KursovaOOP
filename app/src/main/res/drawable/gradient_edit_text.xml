@@ -2,8 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <corners android:radius="50dp" /> <!-- Радіус закруглення кутів -->
     <gradient
-        android:startColor="@color/colorAccent"
-        android:endColor="@color/colorAccent"
+        android:startColor="@color/colorPrimary"
+        android:endColor="@color/colorPrimary"
         android:angle="1" />
 </shape>
 

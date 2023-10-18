@@ -1,23 +1,22 @@
 package com.example.kursovaoop;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
-import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 
-import java.util.Locale;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,9 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int MENU_ITEM_1_ID = 1;
     public static final int MENU_ITEM_2_ID = 2;
 
-
-
-
+    private BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -37,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_UNLABELED);
 
         // Инициализация кастомного Toolbar
         Toolbar toolbar = findViewById(R.id.customToolbar);
@@ -49,38 +47,37 @@ public class MainActivity extends AppCompatActivity {
         secondButton = findViewById(R.id.secondButton);
 
 
+        SharedViewModel viewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+
+
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
-                // Перевірте, чи поточний фрагмент - це LoginFragment
                 Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-                if (currentFragment instanceof HomeFragment) {
-                    // Приховати Toolbar
-                    if (getSupportActionBar() != null) {
-                        getSupportActionBar().hide();
+                if (currentFragment != null) {
+                    if (currentFragment instanceof HomeFragment) {
+                        // Показать bottomNavigationView
+                        bottomNavigationView.setVisibility(View.VISIBLE);
+                        // Скрыть Toolbar и secondButton
+                        if (getSupportActionBar() != null) {
+                            getSupportActionBar().hide();
+                        }
+                        secondButton.setVisibility(View.GONE);
+                    } else if (currentFragment instanceof LoginFragment) {
+                        // Приховати secondButton на LoginFragment
+                        secondButton.setVisibility(View.GONE);
+                    } else {
+                        // Скрыть bottomNavigationView
+                        bottomNavigationView.setVisibility(View.GONE);
+                        // Показать Toolbar и secondButton
+                        if (getSupportActionBar() != null) {
+                            getSupportActionBar().show();
+                        }
+                        secondButton.setVisibility(View.VISIBLE);
                     }
-                    // Сховати secondButton
-                    secondButton.setVisibility(View.GONE);
-                } else if (currentFragment instanceof LoginFragment) {
-                    // Показати Toolbar
-                    if (getSupportActionBar() != null) {
-                        getSupportActionBar().show();
-                    }
-                    secondButton.setVisibility(View.GONE);
-                } else {
-                    // Показати Toolbar для інших фрагментів
-                    if (getSupportActionBar() != null) {
-                        getSupportActionBar().show();
-                    }
-                    secondButton.setVisibility(View.VISIBLE);
                 }
             }
         });
-
-
-
-
-
 
 
         // Установка слушателя нажатия на ImageButton
@@ -108,7 +105,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
 
+            if (item.getItemId() == R.id.navigation_home) {
+                selectedFragment = new HomeFragment();
+            } else if (item.getItemId() == R.id.navigation_info) {
+                selectedFragment = new InfoFragment();
+            }
+
+            if (selectedFragment != null) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        selectedFragment).commit();
+            }
+
+            return true;
+        });
 
 
         if (savedInstanceState == null) {
