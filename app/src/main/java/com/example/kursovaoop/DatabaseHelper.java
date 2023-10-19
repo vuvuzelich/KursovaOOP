@@ -1,5 +1,6 @@
 package com.example.kursovaoop;
 
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -30,6 +31,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_SALARY_AMOUNT = "amount";
     private static final String COLUMN_SALARY_DATE = "date";
 
+    public static final String COLUMN_CARD_NUMBER = "card_number";
+
+    public static final String COLUMN_BANK_ACCOUNT = "bank_account";
+    public static final String COLUMN_INSURANCE_CONTRIBUTIONS = "insurance_contributions";
+    public static final String COLUMN_SOCIAL_BENEFITS = "social_benefits";
+
+
     private static final String TABLE_USERS_CREATE =
             "CREATE TABLE " + TABLE_USERS + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -44,7 +52,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + TABLE_SALARIES + " (" +
                     COLUMN_SALARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_SALARY_AMOUNT + " TEXT, " +
+                    COLUMN_FIRST_NAME + " TEXT, " +
+                    COLUMN_LAST_NAME + " TEXT, " +
+                    COLUMN_CARD_NUMBER + " TEXT, " +
+                    COLUMN_BANK_ACCOUNT + " TEXT, " +
+                    COLUMN_INSURANCE_CONTRIBUTIONS + " REAL, " +
+                    COLUMN_SOCIAL_BENEFITS + " REAL, " +
                     COLUMN_SALARY_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP)";
+
 
 
     public DatabaseHelper(Context context) {
@@ -57,19 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(TABLE_SALARIES_CREATE);
     }
 
-    public long addUser(String firstName, String lastName, String email, String password, String position, String grade) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_FIRST_NAME, firstName);
-        values.put(COLUMN_LAST_NAME, lastName);
-        values.put(COLUMN_EMAIL, email);
-        values.put(COLUMN_PASSWORD, password);
-        values.put(COLUMN_POSITION, position);
-        values.put(COLUMN_GRADE, grade);
-        long newRowId = db.insert(TABLE_USERS, null, values);
-        db.close();
-        return newRowId;
-    }
+
 
     public boolean userExists(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -125,28 +128,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user;
     }
 
-    public void addSalary(String amount) {
+    public void addSalary(String amount, String firstName, String lastName,
+                          String cardNumber, String bankAccount,
+                          double insuranceContributions, double socialBenefits) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_SALARY_AMOUNT, amount);
+        values.put(COLUMN_FIRST_NAME, firstName);
+        values.put(COLUMN_LAST_NAME, lastName);
+        values.put(COLUMN_CARD_NUMBER, cardNumber);
+        values.put(COLUMN_BANK_ACCOUNT, bankAccount);
+        values.put(COLUMN_INSURANCE_CONTRIBUTIONS, insuranceContributions);
+        values.put(COLUMN_SOCIAL_BENEFITS, socialBenefits);
         db.insert(TABLE_SALARIES, null, values);
         db.close();
     }
 
-    public List<String> getAllSalaries() {
-        List<String> salaries = new ArrayList<>();
+
+    public List<Salary> getAllSalaries() {
+        List<Salary> salaries = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_SALARIES, new String[]{COLUMN_SALARY_AMOUNT}, null, null, null, null, null);
+        Cursor cursor = db.query(TABLE_SALARIES,
+                new String[]{COLUMN_SALARY_AMOUNT, COLUMN_FIRST_NAME, COLUMN_LAST_NAME},
+                null, null, null, null, null);
+
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 @SuppressLint("Range") String amount = cursor.getString(cursor.getColumnIndex(COLUMN_SALARY_AMOUNT));
-                salaries.add(amount);
+                @SuppressLint("Range") String firstName = cursor.getString(cursor.getColumnIndex(COLUMN_FIRST_NAME));
+                @SuppressLint("Range") String lastName = cursor.getString(cursor.getColumnIndex(COLUMN_LAST_NAME));
+
+                Salary salary = new Salary(amount, firstName, lastName);
+                salaries.add(salary);
             } while (cursor.moveToNext());
             cursor.close();
         }
         db.close();
         return salaries;
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

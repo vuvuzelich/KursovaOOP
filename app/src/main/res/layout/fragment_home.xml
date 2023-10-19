@@ -45,12 +45,18 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:background="@drawable/profile_border_view"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp">
 
                     <TextView
                         android:id="@+id/fullNameTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:maxWidth="125dp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:textSize="14sp"
                         android:text=""
                         android:textColor="@color/colorAccent" />
 
@@ -58,17 +64,21 @@
                         android:id="@+id/positionTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:fontFamily="@font/inter_medium"
                         android:textColor="@color/borderColor"
-                        android:textSize="16sp" />
+                        android:textSize="12sp"
+                        android:text=""
+                         />
 
                     <TextView
                         android:id="@+id/gradeTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:fontFamily="@font/inter_medium"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp" />
+                        android:textSize="12sp"
+                        android:text=""
+                         />
 
 
                 </LinearLayout>

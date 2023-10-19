@@ -1,17 +1,16 @@
 package com.example.kursovaoop;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class ReportsAnalyticsFragment extends Fragment {
@@ -19,41 +18,40 @@ public class ReportsAnalyticsFragment extends Fragment {
     private RecyclerView recyclerView;
     private SalaryViewModel viewModel;
     private SalaryListAdapter adapter;
-    private TextView resultTextView;
 
-    @SuppressLint("MissingInflatedId")
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reports_analytics, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
-        layoutManager.setReverseLayout(true); // Встановлюємо орієнтацію у зворотньому порядку
-        layoutManager.setStackFromEnd(true); // Розташовуємо айтеми знизу вверх
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
 
         viewModel = new ViewModelProvider(requireActivity()).get(SalaryViewModel.class);
         viewModel.loadSalaries(new DatabaseHelper(requireContext()));
 
-
-
-
-        viewModel.getSalaryList().observe(getViewLifecycleOwner(), new Observer<List<String>>() {
+        viewModel.getSalaryList().observe(getViewLifecycleOwner(), new Observer<List<Salary>>() {
             @Override
-            public void onChanged(List<String> salaryList) {
-                int lastItemTextColor = getResources().getColor(R.color.lastItemTextColor); // Колір для останнього елемента
-                adapter = new SalaryListAdapter(salaryList, lastItemTextColor);
+            public void onChanged(List<Salary> salaryList) {
+                int lastItemPosition = salaryList.size() - 1;
+
+                adapter = new SalaryListAdapter(salaryList);
+                adapter.setLastItemPosition(lastItemPosition);
                 recyclerView.setAdapter(adapter);
             }
         });
 
-        resultTextView = view.findViewById(R.id.resultTextView);
+
+
+
 
         return view;
     }
-
 }
+
 
 
 

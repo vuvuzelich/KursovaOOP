@@ -6,17 +6,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class SalaryListAdapter extends RecyclerView.Adapter<SalaryListAdapter.SalaryViewHolder> {
 
-    private List<String> salaryList;
-    private int lastItemTextColor;
+    private List<Salary> salaryList;
+    private int lastItemPosition = -1;
 
-    public SalaryListAdapter(List<String> salaryList, int lastItemTextColor) {
+    public SalaryListAdapter(List<Salary> salaryList) {
         this.salaryList = salaryList;
-        this.lastItemTextColor = lastItemTextColor;
+    }
+
+    public void setLastItemPosition(int lastItemPosition) {
+        this.lastItemPosition = lastItemPosition;
     }
 
     @NonNull
@@ -28,10 +32,17 @@ public class SalaryListAdapter extends RecyclerView.Adapter<SalaryListAdapter.Sa
 
     @Override
     public void onBindViewHolder(@NonNull SalaryViewHolder holder, int position) {
-        String salary = salaryList.get(position);
-        holder.bind(salary);
-        if (position == getItemCount() - 1) {
-            holder.salaryTextView.setTextColor(lastItemTextColor);
+        Salary salaryObject = salaryList.get(position);
+        String salaryAmount = salaryObject.getAmount();
+        String name = salaryObject.getFirstName() + " " + salaryObject.getLastName();
+        holder.bind(salaryAmount, name);
+
+        if (position == lastItemPosition) {
+            // Change background for the last item
+            holder.cardSalary.setBackgroundResource(R.drawable.card_color_background);
+        } else {
+            // Reset background for other items
+            holder.cardSalary.setBackgroundResource(R.drawable.gradient_edit_text);
         }
     }
 
@@ -42,16 +53,22 @@ public class SalaryListAdapter extends RecyclerView.Adapter<SalaryListAdapter.Sa
 
     public class SalaryViewHolder extends RecyclerView.ViewHolder {
 
+        private ConstraintLayout cardSalary;
         private TextView salaryTextView;
+        private TextView nameCustomerTextView;
 
         public SalaryViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardSalary = itemView.findViewById(R.id.cardSalary);
             salaryTextView = itemView.findViewById(R.id.salaryTextView);
+            nameCustomerTextView = itemView.findViewById(R.id.nameCustomerTextView);
         }
 
-        public void bind(String salary) {
-            salaryTextView.setText("Заробітна плата: " + salary);
+        public void bind(String salary, String name) {
+            salaryTextView.setText(salary);
+            nameCustomerTextView.setText(name);
         }
     }
 }
+
 

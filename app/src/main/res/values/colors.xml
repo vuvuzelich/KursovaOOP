@@ -8,5 +8,5 @@
     <color name="colorGray">#f4f5f7</color>
     <color name="borderColor">#454545</color>
     <color name="dividerColor">#3A47B7</color>
-    <color name="lastItemTextColor">#E91E63</color>
+    <color name="transparent_black">#00000000</color>
 </resources>

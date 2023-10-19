@@ -1,16 +1,14 @@
 package com.example.kursovaoop;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SalaryViewModel extends ViewModel {
 
-    private MutableLiveData<List<String>> salaryList;
+    private MutableLiveData<List<Salary>> salaryList;
 
-    public LiveData<List<String>> getSalaryList() {
+    public MutableLiveData<List<Salary>> getSalaryList() {
         if (salaryList == null) {
             salaryList = new MutableLiveData<>();
         }
@@ -21,16 +19,16 @@ public class SalaryViewModel extends ViewModel {
         if (salaryList == null) {
             salaryList = new MutableLiveData<>();
         }
-        List<String> salaries = databaseHelper.getAllSalaries();
+        List<Salary> salaries = databaseHelper.getAllSalaries();
         salaryList.setValue(salaries);
     }
 
-    public void addSalary(String amount, DatabaseHelper databaseHelper) {
-        // Додаємо розрахунок до бази даних
-        databaseHelper.addSalary(amount);
-        // Оновлюємо список розрахунків
+    public void addSalary(String amount, DatabaseHelper databaseHelper, String firstName, String lastName,
+                          String cardNumber, String bankAccount, double insuranceContributions, double socialBenefits) {
+        databaseHelper.addSalary(amount, firstName, lastName, cardNumber, bankAccount, insuranceContributions, socialBenefits);
         loadSalaries(databaseHelper);
     }
+
 }
 
 
